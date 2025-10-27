@@ -1,22 +1,21 @@
-package regression;
+package util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 import pages.Login;
-import util.OpenUrl;
 
 import static util.ConfigReader.*;
 
-public class LoginTest extends OpenUrl {
+public class DoLogin extends OpenUrl {
 
-    @Test
-    public void loginTest()
+
+    @BeforeClass
+    public void doLogin()
     {
         Login login = new Login(driver);
         login.setUsername(getUsername());
         login.setPassword(getPassword());
         login.clickLogin();
-
     }
 }
