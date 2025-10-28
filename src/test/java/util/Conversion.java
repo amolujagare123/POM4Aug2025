@@ -1,5 +1,8 @@
 package util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class Conversion {
@@ -49,5 +52,15 @@ public class Conversion {
 
         return gender.get(genderId);
 
+    }
+
+
+    public static String convertDate(String dbDateStr) throws ParseException // 2025-10-14 - yyyy-MM-dd
+    {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dbDateStr);
+
+        // 14-Oct-2025 - dd-MMM-yyyy ( Note: check your pattern & use it accordingly)
+
+        return  new SimpleDateFormat("dd-MMM-yyyy").format(date);
     }
 }

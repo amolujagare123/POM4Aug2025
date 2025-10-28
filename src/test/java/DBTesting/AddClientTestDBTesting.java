@@ -10,10 +10,10 @@ import util.DoLogin;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 
-import static util.Conversion.getCountry;
-import static util.Conversion.getGender;
+import static util.Conversion.*;
 import static util.ForDataProvider.getMyData;
 
 public class AddClientTestDBTesting extends DoLogin {
@@ -41,7 +41,7 @@ public class AddClientTestDBTesting extends DoLogin {
             String taxCode
 
 
-    ) throws ClassNotFoundException, SQLException {
+    ) throws ClassNotFoundException, SQLException, ParseException {
 
 
 
@@ -120,7 +120,7 @@ public class AddClientTestDBTesting extends DoLogin {
             actual.add(rs.getString("client_zip"));
             actual.add(getCountry(rs.getString("client_country")));
             actual.add(getGender(rs.getString("client_gender")));
-            actual.add(rs.getString("client_birthdate"));
+            actual.add(convertDate(rs.getString("client_birthdate")));
             actual.add(rs.getString("client_phone"));
             actual.add(rs.getString("client_fax"));
             actual.add(rs.getString("client_mobile"));
@@ -135,10 +135,8 @@ public class AddClientTestDBTesting extends DoLogin {
         System.out.println("actual="+actual);
 
 
-      /*
 
-
-        Assert.assertEquals(actual,expected);*/
+        Assert.assertEquals(actual,expected);
     }
 
     @DataProvider
